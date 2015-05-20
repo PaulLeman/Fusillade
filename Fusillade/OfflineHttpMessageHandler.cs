@@ -35,7 +35,11 @@ namespace Fusillade
             }
 
             var byteContent = new ByteArrayContent(body);
-            return new HttpResponseMessage(HttpStatusCode.OK) { Content = byteContent };
+            var r = new HttpResponseMessage(HttpStatusCode.OK) { Content = byteContent};
+            var contentHeader = new System.Net.Http.Headers.MediaTypeHeaderValue("application/json");
+            contentHeader.CharSet = "utf-8";
+            r.Content.Headers.ContentType = contentHeader;
+            return r;
         }
     }
 }
